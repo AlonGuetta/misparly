@@ -1,5 +1,9 @@
+import { OwnershipType } from './../types/enums/ownership.type';
+import { ownershipSchema } from "../types/models/schemas/ownership.schema";
 import { vehicleSchema } from "../types/models/schemas/vehicle.schema";
 import type { Vehicle } from "../types/models/vehicle.type";
+import { fuelTypeSchema } from '../types/models/schemas/fuelType.schema';
+import { disabilityTypeSchema } from '../types/models/schemas/disability.schema';
 
 const transportationGovMapper = () => {
 
@@ -29,7 +33,7 @@ const transportationGovMapper = () => {
                 ? new Date(raw.basicData.tokef_dt)
                 : null,
 
-            ownershipType: null,
+            OwnershipType: ownershipSchema.parse(raw.basicData?.baalut),
 
             vin: raw.basicData?.misgeret ?? null,
 
@@ -39,7 +43,7 @@ const transportationGovMapper = () => {
             frontTireSize: raw.basicData?.mida_zmig_kdmi ?? null,
             rearTireSize: raw.basicData?.mida_zmig_ahori ?? null,
 
-            fuelType: null,
+            fuelType: fuelTypeSchema.parse(raw.basicData?.sug_delek_nm),
 
             horaat_rishum: raw.basicData?.horaat_rishum ?? null,
             firstRegistrationDate: raw.basicData?.moed_aliya_lakvish ?? null,
@@ -62,8 +66,10 @@ const transportationGovMapper = () => {
             kmOnLastTest: raw.historyData?.kilometer_test_aharon ?? null,
 
             hasDisabilityCard: !!raw.tavNecheData,
-            disabilityType: null,
-        };
+            disabilityType: raw.tavNecheData
+                ? disabilityTypeSchema.parse(raw.tavNecheData?.disability_type)
+                : null,
+        }
 
         return vehicleSchema.parse(mapped);
     }

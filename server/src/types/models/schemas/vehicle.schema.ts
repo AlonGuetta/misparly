@@ -32,7 +32,7 @@ export const vehicleSchema = z.object({
 
     fuelType: z.any().nullable(),
 
-    horaat_rishum: z.string().nullable(),
+    horaat_rishum: z.number().nullable(),
     firstRegistrationDate: z.string().nullable(),
 
     commercialName: z.string().nullable(),

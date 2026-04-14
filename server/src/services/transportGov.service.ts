@@ -16,9 +16,10 @@ const transportGovService = () => {
         tavNecheData: process.env.TAV_NECHE_SEARCH
     };
 
+    //TODO: check if general filter is needed
     const FILTERS: Record<ResourceKey, (vehicleNumber?: number, additionalFilter?: string) => string> = {
         basicVehicleData: (vehicleNumber) => `&filters={"mispar_rechev":${vehicleNumber}}&limit=1`,
-        commercialNameData: (additionalFilter) => `&filters={"kinuy_mishari":${additionalFilter}}`,
+        commercialNameData: (vehicleNumber) => `&filters={"mispar_rechev":${vehicleNumber}}`,
         vehicleHistoryData: (vehicleNumber) => `&filters={"mispar_rechev":${vehicleNumber}}&limit=1`,
         tavNecheData: (vehicleNumber) => `&filters={"MISPAR RECHEV":${vehicleNumber}}&limit=1`
     }
@@ -50,18 +51,22 @@ const transportGovService = () => {
 
 
     const getVehicleData = async (vehicleNumber: number): Promise<TransportGovVehicleData> => {
-        const [basic, history, tavNeche] = await Promise.all([
+        const [basic, history, tavNeche, commercialData] = await Promise.all([
             fetchResource('basicVehicleData', vehicleNumber),
             fetchResource('vehicleHistoryData', vehicleNumber),
             fetchResource('tavNecheData', vehicleNumber),
+            fetchResource('commercialNameData', vehicleNumber)
         ]);
 
+        logger.debug(`fetched all data for: ${vehicleNumber}`)
         return {
             basicData: basic[0] ?? null,
             historyData: history[0] ?? null,
             tavNecheData: tavNeche[0] ?? null,
+            commercialNameData: commercialData[0] ?? null
         };
     }
+
 
     return {
         getVehicleData
