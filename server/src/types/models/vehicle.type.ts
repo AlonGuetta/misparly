@@ -23,7 +23,7 @@ export type Vehicle = {
     frontTireSize: string | null
     rearTireSize: string | null
     fuelType: FuelType | null
-    horaat_rishum: string | null
+    horaat_rishum: number | null
     firstRegistrationDate: string | null
     commercialName: string | null
 

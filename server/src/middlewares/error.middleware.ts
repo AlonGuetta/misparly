@@ -11,7 +11,8 @@ export const errorMiddleware = (
     console.log(err)
     logger.error('ERROR:', err);
 
+    // TODO: do not return http 500 message
     res.status(err.status || 500).json({
-        message: err.message || 'Internal Server Error',
+        message: /*err.message ||*/ 'Internal Server Error',
     });
 };
