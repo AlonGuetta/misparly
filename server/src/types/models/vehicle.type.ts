@@ -42,4 +42,7 @@ export type Vehicle = {
     // used in: tav neche
     hasDisabilityCard: boolean | null
     disabilityType: DisabilityType | null
+
+    // extra data
+    numberOfSameVehicle?: number | undefined
 }
