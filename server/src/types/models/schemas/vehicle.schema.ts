@@ -49,4 +49,6 @@ export const vehicleSchema = z.object({
 
     hasDisabilityCard: z.boolean().nullable(),
     disabilityType: z.any().nullable(),
+
+    numberOfSameVehicle: z.number().optional()
 });

@@ -8,8 +8,18 @@ const vehicleService = () => {
         const vehicleGovData = await transportGovService.getVehicleData(vehicleNumber)
 
         logger.debug(`mapping raw data for ${vehicleNumber}`)
-        return transportationGovMapper.mapTransportGovVehicle(vehicleGovData, vehicleNumber)
+
+        const completeVehicleData = transportationGovMapper.mapTransportGovVehicle(vehicleGovData, vehicleNumber)
+
+        completeVehicleData.numberOfSameVehicle = await getModelCount(completeVehicleData.commercialName || ''
+            , completeVehicleData.trimLevel || '')
+
+        return completeVehicleData
     }
+
+    const getModelCount = async (modelName: string, trimLevel: string): Promise<number> =>
+        transportGovService.getModelCountEstimation(modelName, trimLevel)
+
 
     return {
         getVehicleDataById
