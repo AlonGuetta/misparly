@@ -1,18 +1,21 @@
 import 'dotenv/config'
 import { logger } from '../utils/logger'
-import type { RawGovRecord, TransportGovVehicleData } from '../types/models/transportGov/transportGov.type';
+import type { RawGovRecord } from '../types/models/transportGov/transportGov.type';
 
 type ResourceKey =
     | 'basicVehicleData'
     | 'commercialNameData'
     | 'vehicleHistoryData'
     | 'tavNecheData'
-    | 'modelEstimation';
+    | 'modelEstimation'
+    | 'wltpInfo';
 
 type FilterParams = {
     vehicleNumber?: number
     modelName?: string
     trimLevel?: string
+    modelCode?: string
+    registrationYear?: number
 }
 
 const transportGovService = () => {
@@ -21,17 +24,20 @@ const transportGovService = () => {
         commercialNameData: process.env.KINUY_MISHARI_SEARCH,
         vehicleHistoryData: process.env.HISTORIAT_KLEY_RECHEV,
         tavNecheData: process.env.TAV_NECHE_SEARCH,
-        modelEstimation: process.env.BASIC_RECHEV_SEARCH
+        modelEstimation: process.env.BASIC_RECHEV_SEARCH,
+        wltpInfo: process.env.WLTP_VEHICLE_INFO
     };
 
     //TODO: check if general filter is needed
     const FILTERS: Record<ResourceKey, (params: FilterParams) => string> = {
-        basicVehicleData: ({ vehicleNumber }) => `&filters={"mispar_rechev":${vehicleNumber}}&limit=1`,
-        commercialNameData: ({ vehicleNumber }) => `&filters={"mispar_rechev":${vehicleNumber}}`,
-        vehicleHistoryData: ({ vehicleNumber }) => `&filters={"mispar_rechev":${vehicleNumber}}&limit=1`,
-        tavNecheData: ({ vehicleNumber }) => `&filters={"MISPAR RECHEV":${vehicleNumber}}&limit=1`,
+        basicVehicleData: ({ vehicleNumber }: FilterParams) => `&filters={"mispar_rechev":${vehicleNumber}}&limit=1`,
+        commercialNameData: ({ vehicleNumber }: FilterParams) => `&filters={"mispar_rechev":${vehicleNumber}}`,
+        vehicleHistoryData: ({ vehicleNumber }: FilterParams) => `&filters={"mispar_rechev":${vehicleNumber}}&limit=1`,
+        tavNecheData: ({ vehicleNumber }: FilterParams) => `&filters={"MISPAR RECHEV":${vehicleNumber}}&limit=1`,
         modelEstimation: ({ modelName, trimLevel }: FilterParams) =>
-            `&filters={"ramat_gimur":"${trimLevel}", "kinuy_mishari":"${modelName}"}`
+            `&filters={"ramat_gimur":"${trimLevel}", "kinuy_mishari":"${modelName}"}`,
+        wltpInfo: ({ modelCode, registrationYear }: FilterParams) =>
+            `&filters={"degem_nm":"${modelCode}", "shnat_yitzur": ${registrationYear}}`
     }
 
     const fetchResource = async (
@@ -60,7 +66,7 @@ const transportGovService = () => {
     };
 
 
-    const getVehicleData = async (vehicleNumber: number): Promise<TransportGovVehicleData> => {
+    const getVehicleData = async (vehicleNumber: number): Promise<unknown> => {
         const [basic, history, tavNeche, commercialData] = await Promise.all([
             fetchResource('basicVehicleData', { vehicleNumber }),
             fetchResource('vehicleHistoryData', { vehicleNumber }),
@@ -84,15 +90,22 @@ const transportGovService = () => {
      * @param trimLevel - trim level like EX, COMFORTLINE etc...
      * @returns number of similar vehicles, should be greater than 1
      */
-    const getModelCountEstimation = async (modelName: string, trimLevel: string) /*: Promise<number> */ => {
+    const getModelCountEstimation = async (modelName: string, trimLevel: string): Promise<number> => {
         const result = await fetchResource('modelEstimation', { modelName, trimLevel })
         return result.length
+    }
+
+    const getVehicleWltpData = async (modelCode: string, registrationYear: number): Promise<unknown> => {
+        const result = await fetchResource('wltpInfo', { modelCode, registrationYear })
+
+        return result
     }
 
 
     return {
         getVehicleData,
-        getModelCountEstimation
+        getModelCountEstimation,
+        getVehicleWltpData
     }
 }
 

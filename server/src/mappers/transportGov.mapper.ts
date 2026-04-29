@@ -15,7 +15,7 @@ const transportationGovMapper = () => {
             sug_degem: raw.basicData?.sug_degem ?? null,
             manufacturer: raw.basicData?.tozeret_nm ?? null,
             degem_cd: raw.basicData?.degem_cd ?? null,
-            degem_nm: raw.basicData?.degem_nm ?? null,
+            modelCode: raw.basicData?.degem_nm ?? null,
             trimLevel: raw.basicData?.ramat_gimur ?? null,
 
             safetyLevelRating: raw.basicData?.ramat_eivzur_betihuty ?? null,
@@ -58,9 +58,6 @@ const transportationGovMapper = () => {
             licenseExpiryDate: raw.basicData?.tokef_dt
                 ? new Date(raw.basicData.tokef_dt)
                 : null,
-
-            seats: raw.basicData?.mispar_mekomot ?? null,
-            seatsNearDriver: raw.basicData?.mispar_mekomot_leyd_nahag ?? null,
 
             engineSerialCode: raw.historyData?.mispar_manoa ?? null,
             kmOnLastTest: raw.historyData?.kilometer_test_aharon ?? null,
