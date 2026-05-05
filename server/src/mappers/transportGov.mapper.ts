@@ -67,7 +67,7 @@ const transportationGovMapper = () => {
             disabilityType: raw.tavNecheData
                 ? disabilityTypeSchema.parse(raw.tavNecheData["SUG TAV"])
                 : null,
-            issuedAt: raw.tavNecheData ? parseGovNumericDate(raw.tavNecheData["TAARICH HAFAKAT TAG"])
+            disabilityCardIssuedAt: raw.tavNecheData ? parseGovNumericDate(raw.tavNecheData["TAARICH HAFAKAT TAG"])
                 : null
         }
 
