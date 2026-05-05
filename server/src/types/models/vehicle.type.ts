@@ -32,6 +32,8 @@ export type Vehicle = {
     cancellationStatus: string | null
     cancellationDate: Date | null
     licenseExpiryDate: Date | null
+    seats: number | null
+    seatsNearDriver: number | null
 
     // used in: HISTORIAT_KLEY_RECHEV
     engineSerialCode: string | null
@@ -43,25 +45,24 @@ export type Vehicle = {
 
     // extra data
     numberOfSameVehicle?: number | undefined
-    
+
     // wltp data
     taxGroup?: number | undefined
     engineDisplacement?: number | undefined
     totalWeight?: number | undefined
-    height?: number | undefined 
+    height?: number | undefined
     drivetrain?: string | undefined
     isAirConditioned?: boolean | undefined
     isABS?: boolean | undefined
     airbags?: number | undefined
     isPowerSterring?: boolean | undefined
     isAutomatic?: boolean | undefined
-    powerWindows?: number | undefined 
+    powerWindows?: number | undefined
     isSunroof?: boolean | undefined
     isAlloyWheels?: boolean | undefined
     bodystyle?: string | undefined // merkav
     doors?: number | undefined
     horsepower?: number | undefined
-    seats?: number | undefined
     isESP?: boolean | undefined
     market?: string | undefined //TODO: perhaps enum for EUDM USDM etc
 
