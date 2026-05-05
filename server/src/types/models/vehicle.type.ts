@@ -32,8 +32,8 @@ export type Vehicle = {
     cancellationStatus: string | null
     cancellationDate: Date | null
     licenseExpiryDate: Date | null
-    seats: number | null
-    seatsNearDriver: number | null
+    seats?: number | undefined
+    seatsNearDriver?: number | undefined
 
     // used in: HISTORIAT_KLEY_RECHEV
     engineSerialCode: string | null
@@ -42,6 +42,7 @@ export type Vehicle = {
     // used in: tav neche
     hasDisabilityCard: boolean | null
     disabilityType: DisabilityType | null
+    disabilityCardIssuedAt?: Date | null
 
     // extra data
     numberOfSameVehicle?: number | undefined
