@@ -1,7 +1,7 @@
 import type { Vehicle } from '../types/models/vehicle.type'
 
 const wltpMapper = () => {
-    const mapWltpData = (raw: any): Partial<Vehicle> => {
+    const mappedWltpData = (raw: any): Partial<Vehicle> => {
         const record = raw?.[0] ?? raw //TODO: check
 
         return {
@@ -14,13 +14,13 @@ const wltpMapper = () => {
             isAirConditioned: record?.mazgan_ind === 1,
             isABS: record?.abs_ind === 1,
             airbags: record?.mispar_kariot_avir ?? undefined,
-            isPowerSterring: record?.hege_koah_ind === 1,
+            isPowerSteering: record?.hege_koah_ind === 1,
             isAutomatic: record?.automatic_ind === 1,
             powerWindows: record?.mispar_halonot_hashmal ?? undefined,
             isSunroof: record?.halon_bagg_ind === 1,
             isAlloyWheels: record?.galgaley_sagsoget_kala_ind === 1,
 
-            bodystyle: record?.merkav ?? undefined,
+            bodStyle: record?.merkav ?? undefined,
             doors: record?.mispar_dlatot ?? undefined,
             horsepower: record?.koah_sus ?? undefined,
             seats: record?.mispar_moshavim ?? undefined,
@@ -38,8 +38,8 @@ const wltpMapper = () => {
             isLaneKeepAssist: record?.bakarat_stiya_menativ_ind === 1,
             laneKeepAssistOrigin: record?.bakarat_stiya_menativ_makor_hatkana ?? undefined,
 
-            isAutonumousBraking: record?.nitur_merhak_milfanim_ind === 1,
-            autonumousBrakingOrigin: record?.nitur_merhak_milfanim_makor_hatkana ?? undefined,
+            isAutonomousBraking: record?.nitur_merhak_milfanim_ind === 1,
+            autonomousBrakingOrigin: record?.nitur_merhak_milfanim_makor_hatkana ?? undefined,
 
             isBlindSpotMonitoring: record?.zihuy_beshetah_nistar_ind === 1,
             isAdaptiveCruise: record?.bakarat_shyut_adaptivit_ind === 1,
@@ -49,7 +49,7 @@ const wltpMapper = () => {
 
             isReverseCamera: record?.matzlemat_reverse_ind === 1,
             isTpms: record?.hayshaney_lahatz_avir_batzmigim_ind === 1,
-            isSeatbeltReinder: record?.hayshaney_hagorot_ind === 1,
+            isSeatbeltReminder: record?.hayshaney_hagorot_ind === 1,
 
             safetyRating: record?.nikud_betihut ?? record?.ramat_eivzur_betihuty ?? undefined,
 
@@ -62,7 +62,7 @@ const wltpMapper = () => {
     }
 
     return {
-        mapWltpData,
+        mapWltpData: mappedWltpData,
     }
 }
 

@@ -59,13 +59,13 @@ export const vehicleSchema = z.object({
     isAirConditioned: z.boolean().optional(),
     isABS: z.boolean().optional(),
     airbags: z.number().optional(),
-    isPowerSterring: z.boolean().optional(),
+    isPowerSteering: z.boolean().optional(),
     isAutomatic: z.boolean().optional(),
     powerWindows: z.number().optional(),
     isSunroof: z.boolean().optional(),
     isAlloyWheels: z.boolean().optional(),
 
-    bodystyle: z.string().optional(),
+    bodyStyle: z.string().optional(),
     doors: z.number().optional(),
     horsepower: z.number().optional(),
     seats: z.number().optional(),
@@ -81,8 +81,8 @@ export const vehicleSchema = z.object({
 
     isLaneKeepAssist: z.boolean().optional(),
     laneKeepAssistOrigin: z.string().optional(),
-    isAutonumousBraking: z.boolean().optional(),
-    autonumousBrakingOrigin: z.string().optional(),
+    isAutonomousBraking: z.boolean().optional(),
+    autonomousBrakingOrigin: z.string().optional(),
     isBlindSpotMonitoring: z.boolean().optional(),
     isAdaptiveCruise: z.boolean().optional(),
     isPedestrianDetection: z.boolean().optional(),
@@ -90,7 +90,7 @@ export const vehicleSchema = z.object({
 
     isReverseCamera: z.boolean().optional(),
     isTpms: z.boolean().optional(),
-    isSeatbeltReinder: z.boolean().optional(),
+    isSeatbeltReminder: z.boolean().optional(),
     safetyRating: z.number().optional(),
 
     isAutoLights: z.boolean().optional(),

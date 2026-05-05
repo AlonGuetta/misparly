@@ -55,12 +55,12 @@ export type Vehicle = {
     isAirConditioned?: boolean | undefined
     isABS?: boolean | undefined
     airbags?: number | undefined
-    isPowerSterring?: boolean | undefined
+    isPowerSteering?: boolean | undefined
     isAutomatic?: boolean | undefined
     powerWindows?: number | undefined
     isSunroof?: boolean | undefined
     isAlloyWheels?: boolean | undefined
-    bodystyle?: string | undefined // merkav
+    bodStyle?: string | undefined // merkav
     doors?: number | undefined
     horsepower?: number | undefined
     isESP?: boolean | undefined
@@ -75,8 +75,8 @@ export type Vehicle = {
 
     isLaneKeepAssist?: boolean | undefined
     laneKeepAssistOrigin?: string | undefined
-    isAutonumousBraking?: boolean | undefined
-    autonumousBrakingOrigin?: string | undefined
+    isAutonomousBraking?: boolean | undefined
+    autonomousBrakingOrigin?: string | undefined
     isBlindSpotMonitoring?: boolean | undefined
     isAdaptiveCruise?: boolean | undefined
     isPedestrianDetection?: boolean | undefined
@@ -84,7 +84,7 @@ export type Vehicle = {
     // maarechet_ezer_labalam_ind
     isReverseCamera?: boolean | undefined
     isTpms?: boolean | undefined
-    isSeatbeltReinder?: boolean | undefined
+    isSeatbeltReminder?: boolean | undefined
     safetyRating?: number | undefined //nikud_betihut or ramat_eivzur_betihuty
 
     isAutoLights?: boolean | undefined
