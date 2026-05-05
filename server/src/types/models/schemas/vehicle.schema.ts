@@ -7,7 +7,7 @@ export const vehicleSchema = z.object({
     sug_degem: z.string().nullable(),
     manufacturer: z.string().nullable(),
     degem_cd: z.number().nullable(),
-    degem_nm: z.string().nullable(),
+    modelCode: z.string().nullable(),
     trimLevel: z.string().nullable(),
 
     safetyLevelRating: z.number().nullable(),
@@ -41,14 +41,60 @@ export const vehicleSchema = z.object({
     cancellationDate: z.date().nullable(),
     licenseExpiryDate: z.date().nullable(),
 
-    seats: z.number().nullable(),
-    seatsNearDriver: z.number().nullable(),
-
     engineSerialCode: z.string().nullable(),
     kmOnLastTest: z.number().nullable(),
 
     hasDisabilityCard: z.boolean().nullable(),
     disabilityType: z.any().nullable(),
 
-    numberOfSameVehicle: z.number().optional()
+    numberOfSameVehicle: z.number().optional(),
+
+    // wltp data
+    taxGroup: z.number().optional(),
+    engineDisplacement: z.number().optional(),
+    totalWeight: z.number().optional(),
+    height: z.number().optional(),
+    drivetrain: z.string().optional(),
+
+    isAirConditioned: z.boolean().optional(),
+    isABS: z.boolean().optional(),
+    airbags: z.number().optional(),
+    isPowerSteering: z.boolean().optional(),
+    isAutomatic: z.boolean().optional(),
+    powerWindows: z.number().optional(),
+    isSunroof: z.boolean().optional(),
+    isAlloyWheels: z.boolean().optional(),
+
+    bodyStyle: z.string().optional(),
+    doors: z.number().optional(),
+    horsepower: z.number().optional(),
+    seats: z.number().optional(),
+    isESP: z.boolean().optional(),
+    market: z.string().optional(),
+
+    catalyticConverterType: z.string().optional(),
+    engineTechnology: z.string().optional(),
+    co2: z.number().optional(),
+    nox: z.number().optional(),
+    pm10: z.number().optional(),
+    greenScale: z.number().optional(),
+
+    isLaneKeepAssist: z.boolean().optional(),
+    laneKeepAssistOrigin: z.string().optional(),
+    isAutonomousBraking: z.boolean().optional(),
+    autonomousBrakingOrigin: z.string().optional(),
+    isBlindSpotMonitoring: z.boolean().optional(),
+    isAdaptiveCruise: z.boolean().optional(),
+    isPedestrianDetection: z.boolean().optional(),
+    pedestrianDetectionOrigin: z.string().optional(),
+
+    isReverseCamera: z.boolean().optional(),
+    isTpms: z.boolean().optional(),
+    isSeatbeltReminder: z.boolean().optional(),
+    safetyRating: z.number().optional(),
+
+    isAutoLights: z.boolean().optional(),
+    isAutoHighBeams: z.boolean().optional(),
+    isSignDetection: z.boolean().optional(),
+    signDetectionOrigin: z.string().optional(),
 });
