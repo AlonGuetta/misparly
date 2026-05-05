@@ -4,6 +4,7 @@ import { vehicleSchema } from "../types/models/schemas/vehicle.schema";
 import type { Vehicle } from "../types/models/vehicle.type";
 import { fuelTypeSchema } from '../types/models/schemas/fuelType.schema';
 import { disabilityTypeSchema } from '../types/models/schemas/disability.schema';
+import { parseGovNumericDate } from './transportGov.parser';
 
 const transportationGovMapper = () => {
 
@@ -64,8 +65,10 @@ const transportationGovMapper = () => {
 
             hasDisabilityCard: !!raw.tavNecheData,
             disabilityType: raw.tavNecheData
-                ? disabilityTypeSchema.parse(raw.tavNecheData?.disability_type)
+                ? disabilityTypeSchema.parse(raw.tavNecheData["SUG TAV"])
                 : null,
+            issuedAt: raw.tavNecheData ? parseGovNumericDate(raw.tavNecheData["TAARICH HAFAKAT TAG"])
+                : null
         }
 
         return vehicleSchema.parse(mapped);
