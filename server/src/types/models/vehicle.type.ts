@@ -8,7 +8,7 @@ export type Vehicle = {
     sug_degem: string | null
     manufacturer: string | null
     degem_cd: number | null
-    degem_nm: string | null
+    modelCode: string | null
     trimLevel: string | null
     safetyLevelRating: number | null
     emissionLevelRating: number | null
@@ -23,7 +23,7 @@ export type Vehicle = {
     frontTireSize: string | null
     rearTireSize: string | null
     fuelType: FuelType | null
-    horaat_rishum: string | null
+    horaat_rishum: number | null
     firstRegistrationDate: string | null
     commercialName: string | null
 
@@ -32,8 +32,8 @@ export type Vehicle = {
     cancellationStatus: string | null
     cancellationDate: Date | null
     licenseExpiryDate: Date | null
-    seats: number | null
-    seatsNearDriver: number | null
+    seats?: number | undefined
+    seatsNearDriver?: number | undefined
 
     // used in: HISTORIAT_KLEY_RECHEV
     engineSerialCode: string | null
@@ -42,4 +42,54 @@ export type Vehicle = {
     // used in: tav neche
     hasDisabilityCard: boolean | null
     disabilityType: DisabilityType | null
+    disabilityCardIssuedAt?: Date | null
+
+    // extra data
+    numberOfSameVehicle?: number | undefined
+
+    // wltp data
+    taxGroup?: number | undefined
+    engineDisplacement?: number | undefined
+    totalWeight?: number | undefined
+    height?: number | undefined
+    drivetrain?: string | undefined
+    isAirConditioned?: boolean | undefined
+    isABS?: boolean | undefined
+    airbags?: number | undefined
+    isPowerSteering?: boolean | undefined
+    isAutomatic?: boolean | undefined
+    powerWindows?: number | undefined
+    isSunroof?: boolean | undefined
+    isAlloyWheels?: boolean | undefined
+    bodStyle?: string | undefined // merkav
+    doors?: number | undefined
+    horsepower?: number | undefined
+    isESP?: boolean | undefined
+    market?: string | undefined //TODO: perhaps enum for EUDM USDM etc
+
+    catalyticConverterType?: string | undefined
+    engineTechnology?: string | undefined
+    co2?: number | undefined
+    nox?: number | undefined
+    pm10?: number | undefined
+    greenScale?: number | undefined
+
+    isLaneKeepAssist?: boolean | undefined
+    laneKeepAssistOrigin?: string | undefined
+    isAutonomousBraking?: boolean | undefined
+    autonomousBrakingOrigin?: string | undefined
+    isBlindSpotMonitoring?: boolean | undefined
+    isAdaptiveCruise?: boolean | undefined
+    isPedestrianDetection?: boolean | undefined
+    pedestrianDetectionOrigin?: string | undefined
+    // maarechet_ezer_labalam_ind
+    isReverseCamera?: boolean | undefined
+    isTpms?: boolean | undefined
+    isSeatbeltReminder?: boolean | undefined
+    safetyRating?: number | undefined //nikud_betihut or ramat_eivzur_betihuty
+
+    isAutoLights?: boolean | undefined
+    isAutoHighBeams?: boolean | undefined
+    isSignDetection?: boolean | undefined
+    signDetectionOrigin?: string | undefined
 }

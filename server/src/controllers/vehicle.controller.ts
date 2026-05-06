@@ -13,7 +13,7 @@ const getVehicleById = async (req: Request, res: Response) => {
 
     const vehicleData = await vehicleService.getVehicleDataById(Number(vehicleId))
 
-    return vehicleData
+    res.send({ vehicleData })
 }
 
 export default { getVehicleById }
