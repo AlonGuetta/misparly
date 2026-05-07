@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import { Box, Card, CardContent, Typography } from '@mui/material';
 import { resultPageStyles } from './ResultPage.style';
 
-export const ResultPage = () => {
-  const { vehicleNumber } = useParams();
+const ResultPage = () => {
+  const { vehicleNumber } = useParams()
 
   return (
     <Box>
@@ -29,5 +29,7 @@ export const ResultPage = () => {
         </CardContent>
       </Card>
     </Box>
-  );
-};
+  )
+}
+
+export default ResultPage

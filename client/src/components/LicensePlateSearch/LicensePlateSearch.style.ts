@@ -33,10 +33,15 @@ export const licensePlateSearchStyles = {
             xs: 56,
             md: 72,
         },
+        width: {
+            xs: 156,
+            md: 212,
+        },
         px: {
             xs: 2,
             md: 4,
         },
         fontWeight: 700,
+        marginTop: 2
     },
 };

@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { LicensePlateSearch } from '../../components/LicensePlateSearch/LicensePlateSearch';
 import { homePageStyles } from './HomePage.style';
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <Box sx={homePageStyles.root}>
       <Box sx={homePageStyles.content}>
@@ -18,4 +18,6 @@ export const HomePage = () => {
       </Box>
     </Box>
   );
-};
+}
+
+export default HomePage
